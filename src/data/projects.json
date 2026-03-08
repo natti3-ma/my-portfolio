@@ -1,0 +1,82 @@
+[
+  {
+    "id": "spring-sale-banner",
+    "category": "banner",
+    "title": "ネイルサロン Spring Sale Instagram投稿画像",
+    "image": "images/work/spring-sale.png",
+    "description": {
+      "target": "春に指先を彩りたい女性、ネイルサロンの常連・新規顧客",
+      "concept": "春の訪れを感じさせる華やかさと、特別感を演出",
+      "detail": "上品なネイルの質感を引き立てるレイアウト。Miricanvasで構成しました。",
+      "effort": "春らしい暖かな光と、ネイルの繊細なディテールが美しく映える配置にこだわりました。",
+      "solution": "「春の新色を試してみたい」というお客様のワクワク感を刺激するデザインを目指しました。"
+    },
+    "tools": [
+      "Miricanvas"
+    ]
+  },
+  {
+    "id": "nursery-info-banner",
+    "category": "sns",
+    "title": "保育園 入園説明会のお知らせ Instagram投稿画像",
+    "image": "images/work/nursery-school.png",
+    "description": {
+      "target": "これから入園を検討している保護者の方々",
+      "concept": "子どもたちの笑顔が溢れる、安心感と温かみのある告知",
+      "detail": "パステルカラーを基調とした、親しみやすいデザイン。Miricanvasで作成。",
+      "effort": "文字の読みやすさを最優先しつつ、保育園の持つ「温かさ」が伝わるような配色を選びました。",
+      "solution": "初めての入園で不安を感じる保護者の方に、安心感を与える視覚情報を整理しました。"
+    },
+    "tools": [
+      "Miricanvas"
+    ]
+  },
+  {
+    "id": "cheer-dog-character",
+    "category": "illustration",
+    "title": "チアダンス教室 キャラクター提案",
+    "image": "images/work/cheer-dog.png",
+    "description": {
+      "target": "チアダンスに興味がある子どもたち、その保護者",
+      "concept": "元気いっぱいで親しみやすい、教室の「顔」になるキャラクター",
+      "detail": "チアの衣装を着た可愛らしいワンちゃんのキャラクター。コンペ提案作品。",
+      "effort": "一目で「元気・応援」が伝わるよう、明るいオレンジを基調に、躍動感のあるポーズで作成しました。",
+      "solution": "子どもたちが「一緒に踊りたい！」と思えるような、親しみやすくキャッチーな造形を追求しました。"
+    },
+    "tools": [
+      "Gemini Nano Banana Pro"
+    ]
+  },
+  {
+    "id": "new-year-sheep",
+    "category": "illustration",
+    "title": "年賀状イラスト特集 応募作品",
+    "image": "images/work/new-year-sheep.png",
+    "description": {
+      "target": "年賀状を送る一般層、イラスト素材を探している方",
+      "concept": "和の伝統と可愛らしさが同居する、心温まる新年の挨拶",
+      "detail": "着物を着た羊が「賀正」の札を持つイラスト。コンペ応募作品。",
+      "effort": "和柄の着物の細部までこだわり、新しい年の始まりを祝う華やかさを表現しました。",
+      "solution": "受け取った人がホッコリするような、優しい表情と柔らかな質感を大切にしました。"
+    },
+    "tools": [
+      "Gemini Nano Banana Pro"
+    ]
+  },
+  {
+    "id": "cat-cafe-logo",
+    "category": "branding",
+    "title": "猫カフェ「NobiNobi Cat Cafe」ロゴデザイン",
+    "image": "images/work/cat-cafe-logo.png",
+    "description": {
+      "target": "猫好きの方々、癒やしを求めるカフェ利用者、落ち着いた空間を好む層",
+      "concept": "のびのびとくつろぐ猫のように、訪れる人がリラックスできる「温かなサードプレイス」",
+      "detail": "店名通りのびのびとした猫のシルエットをメインにしたロゴと、その展開例（モックアップ）。",
+      "effort": "ロゴ単体だけでなく、看板やマグカップ、トートバッグなど「実際の店舗での使われ方」を視覚化し、ブランドの世界観をトータルで提案しました。",
+      "solution": "シンプルながらも記憶に残るシルエットと、木の温もりを感じさせる配色で、洗練された「大人の隠れ家」的な雰囲気を演出しました。"
+    },
+    "tools": [
+      "Gemini Nano Banana Pro"
+    ]
+  }
+]

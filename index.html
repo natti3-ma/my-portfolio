@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>natti Portfolio | Watercolor Storybook</title>
+    <link rel="stylesheet" href="./src/style.css">
+</head>
+
+<body>
+    <div id="app">
+        <!-- Storybook Background Elements -->
+        <div class="background-decorations"></div>
+
+        <header>
+            <div class="container">
+                <h1 id="user-name">natti</h1>
+                <p id="user-title">Creative Designer & Illustrator</p>
+            </div>
+        </header>
+
+        <main>
+            <section id="hero">
+                <div class="container hero-content">
+                    <div class="profile-image-container">
+                        <img id="user-image" src="" alt="Profile Image" class="profile-icon">
+                    </div>
+                    <div class="profile-text">
+                        <h2 id="user-catchphrase">🎨 手書きの温もりが届く、物語のポートフォリオ</h2>
+                        <p id="user-bio">読み込み中...</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="works">
+                <div class="container">
+                    <h2 class="section-title">制作実績</h2>
+                    <div id="project-list" class="grid">
+                        <!-- Projects will be injected here -->
+                    </div>
+                </div>
+            </section>
+
+            <section id="contact">
+                <div class="container">
+                    <h2 class="section-title">お問い合わせ</h2>
+                    <div class="contact-card">
+                        <p>ご相談やご依頼は、下記よりお気軽にお問い合わせください。</p>
+                        <div id="contact-info"></div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Project Detail Modal -->
+        <div id="project-modal" class="modal hidden">
+            <div class="modal-overlay"></div>
+            <div class="modal-content">
+                <button id="close-modal" class="close-button" aria-label="詳細を閉じる">&times;</button>
+                <div class="modal-body">
+                    <div class="modal-image-container">
+                        <img id="modal-image" src="" alt="">
+                    </div>
+                    <div class="modal-text-content">
+                        <h2 id="modal-title">作品タイトル</h2>
+                        <div class="modal-tags" id="modal-tools"></div>
+
+                        <div class="modal-section">
+                            <h3>🌟 作品の背景・ターゲット</h3>
+                            <p id="modal-target"></p>
+                        </div>
+
+                        <div class="modal-section">
+                            <h3>🎨 こだわりと工夫</h3>
+                            <p id="modal-effort"></p>
+                        </div>
+
+                        <div class="modal-section">
+                            <h3>💡 解決したかった悩み</h3>
+                            <p id="modal-solution"></p>
+                        </div>
+
+                        <div class="modal-section">
+                            <h3>📝 詳細</h3>
+                            <p id="modal-detail"></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <div class="container">
+                <p>&copy; 2026 natti. All rights reserved.</p>
+            </div>
+        </footer>
+    </div>
+    <script type="module" src="./src/main.js"></script>
+</body>
+
+</html>
