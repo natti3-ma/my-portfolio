@@ -11,6 +11,7 @@ async function loadData() {
         allProjects = await projectsRes.json();
 
         renderProfile(profile);
+        renderProblems(profile.problems_section);
         renderProjects(allProjects);
         setupModal();
     } catch (error) {
@@ -35,7 +36,25 @@ function renderProfile(profile) {
     const contactInfo = document.getElementById('contact-info');
     contactInfo.innerHTML = `
         <p>📧 ${profile.contact.email}</p>
-        <p>🕒 対応可能時間: ${profile.contact.available_time}</p>
+        <p>🕒 連絡可能時間: ${profile.contact.contact_time}</p>
+        <p>⏳ 稼働時間: ${profile.contact.work_hours}</p>
+    `;
+}
+
+function renderProblems(problems) {
+    const problemsContainer = document.getElementById('problems-content');
+    if (!problems || !problemsContainer) return;
+
+    const titleElement = document.getElementById('problems-title');
+    if (titleElement) titleElement.textContent = problems.title;
+
+    problemsContainer.innerHTML = `
+        <div class="problems-grid">
+            ${problems.items.map(item => `<div class="problem-card">${item}</div>`).join('')}
+        </div>
+        <div class="solution-banner">
+            <p>${problems.solution_message}</p>
+        </div>
     `;
 }
 
@@ -86,6 +105,19 @@ function openModal(project) {
     document.getElementById('modal-effort').textContent = project.description.effort || '製作中...';
     document.getElementById('modal-solution').textContent = project.description.solution || '製作中...';
     document.getElementById('modal-detail').textContent = project.description.detail;
+
+    // Change labels to Before/After perspective
+    const labels = {
+        'modal-label-target': '🌟 作品のターゲット',
+        'modal-label-effort': '🎨 制作のこだわり',
+        'modal-label-solution': '✨ 解決のポイント',
+        'modal-label-detail': '💡 ご相談内容・お悩み'
+    };
+
+    Object.entries(labels).forEach(([id, text]) => {
+        const el = document.getElementById(id);
+        if (el) el.textContent = text;
+    });
 
     const toolsContainer = document.getElementById('modal-tools');
     toolsContainer.innerHTML = project.tools.map(tool => `<span>${tool}</span>`).join('');
