@@ -110,8 +110,8 @@ function openModal(project) {
     const labels = {
         'modal-label-target': '🌟 作品のターゲット',
         'modal-label-effort': '🎨 制作のこだわり',
-        'modal-label-solution': '✨ 解決のポイント',
-        'modal-label-detail': '💡 ご相談内容・お悩み'
+        'modal-label-solution': '✨ 制作・解決のポイント',
+        'modal-label-detail': '💡 ご依頼内容・お悩み'
     };
 
     Object.entries(labels).forEach(([id, text]) => {
