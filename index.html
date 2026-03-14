@@ -5,6 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>natti Portfolio | Watercolor Storybook</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./src/style.css">
 </head>
 
@@ -13,10 +16,19 @@
         <!-- Storybook Background Elements -->
         <div class="background-decorations"></div>
 
-        <header>
-            <div class="container">
-                <h1 id="user-name">natti</h1>
-                <p id="user-title">Creative Designer & Illustrator</p>
+        <header id="main-header">
+            <div class="container header-container">
+                <div class="header-logo">
+                    <h1 id="user-name">natti</h1>
+                    <p id="user-title">Creative Designer & Illustrator</p>
+                </div>
+                <nav class="main-nav">
+                    <ul>
+                        <li><a href="#" class="nav-link" data-target="hero">About me</a></li>
+                        <li><a href="#" class="nav-link" data-target="works">制作実績</a></li>
+                        <li><a href="#" class="nav-link" data-target="contact">ご案内</a></li>
+                    </ul>
+                </nav>
             </div>
         </header>
 
@@ -27,21 +39,26 @@
                         <img id="user-image" src="" alt="Profile Image" class="profile-icon">
                     </div>
                     <div class="profile-text">
-                        <h2 id="user-catchphrase">🎨 手書きの温もりが届く、物語のポートフォリオ</h2>
+                        <h2 id="user-catchphrase">画像生成AI × デザインで、理想のイメージを形に。</h2>
                         <p id="user-bio">読み込み中...</p>
+                        <button id="open-about-modal" class="about-btn" style="display:none; margin-top: 15px;">About me - 私について</button>
                     </div>
-                </div>
-            </section>
-            <section id="problems">
-                <div class="container" id="problems-section">
-                    <h2 class="section-title" id="problems-title">読み込み中...</h2>
-                    <div id="problems-content"></div>
                 </div>
             </section>
 
             <section id="works">
                 <div class="container">
                     <h2 class="section-title">制作実績</h2>
+
+                    <!-- Category Filter -->
+                    <div id="category-filter" class="filter-container">
+                        <button class="filter-btn active" data-category="all">すべて</button>
+                        <button class="filter-btn" data-category="logo">ロゴ</button>
+                        <button class="filter-btn" data-category="illustration">イラスト</button>
+                        <button class="filter-btn" data-category="sns_image">SNS画像</button>
+                        <button class="filter-btn" data-category="thumbnail">サムネイル</button>
+                    </div>
+
                     <div id="project-list" class="grid">
                         <!-- Projects will be injected here -->
                     </div>
@@ -50,9 +67,9 @@
 
             <section id="contact">
                 <div class="container">
-                    <h2 class="section-title">お問い合わせ</h2>
+                    <h2 class="section-title">ご案内</h2>
                     <div class="contact-card">
-                        <p>ご相談やご依頼は、下記よりお気軽にお問い合わせください。</p>
+                        <p id="contact-message">読み込み中...</p>
                         <div id="contact-info"></div>
                     </div>
                 </div>
@@ -73,24 +90,53 @@
                         <div class="modal-tags" id="modal-tools"></div>
 
                         <div class="modal-section">
-                            <h3 id="modal-label-target">🌟 作品の背景・ターゲット</h3>
+                            <h3 id="modal-label-target"> 作品の背景・ターゲット</h3>
                             <p id="modal-target"></p>
                         </div>
 
                         <div class="modal-section">
-                            <h3 id="modal-label-effort">🎨 こだわりと工夫</h3>
+                            <h3 id="modal-label-effort"> こだわりと工夫</h3>
                             <p id="modal-effort"></p>
                         </div>
 
                         <div class="modal-section">
-                            <h3 id="modal-label-solution">💡 解決したかった悩み</h3>
+                            <h3 id="modal-label-solution"> 解決したかった悩み</h3>
                             <p id="modal-solution"></p>
                         </div>
 
                         <div class="modal-section">
-                            <h3 id="modal-label-detail">📝 詳細</h3>
+                            <h3 id="modal-label-detail"> 詳細</h3>
                             <p id="modal-detail"></p>
                         </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- About Me Modal -->
+        <div id="about-modal" class="modal hidden">
+            <div class="modal-overlay"></div>
+            <div class="modal-content about-modal-content" style="max-width: 700px;">
+                <button id="close-about-modal" class="close-button" aria-label="詳細を閉じる">&times;</button>
+                <div class="modal-body about-body" style="flex-direction: column; padding: 30px;">
+                    <div class="about-header" style="text-align: center; margin-bottom: 30px;">
+                        <img src="" id="about-image" alt="Profile" style="width: 120px; height: 120px; border-radius: 50%; object-fit: cover; border: 2px solid var(--accent-gold); margin-bottom: 15px;">
+                        <h2 id="about-name" style="font-size: 1.8rem; color: var(--accent-gold); margin-bottom: 5px;"></h2>
+                        <p id="about-title" style="color: var(--accent-rose); font-weight: bold;"></p>
+                    </div>
+                    
+                    <div class="modal-section">
+                        <h3>ご挨拶</h3>
+                        <p id="about-intro"></p>
+                    </div>
+
+                    <div class="modal-section">
+                        <h3>私の強み</h3>
+                        <div id="about-strengths" style="display: flex; flex-direction: column; gap: 15px; margin-top: 15px;"></div>
+                    </div>
+
+                    <div class="modal-section" style="text-align: center; margin-top: 20px; padding-top: 20px; border-top: 1px dashed var(--accent-sage);">
+                        <p id="about-message" style="color: var(--accent-gold); font-weight: bold; font-size: 1.1rem; line-height: 1.8;"></p>
                     </div>
                 </div>
             </div>

@@ -1,5 +1,22 @@
 let allProjects = [];
 
+function setupRevealAnimation() {
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('active');
+            }
+        });
+    }, { threshold: 0.1 });
+
+    // Target sections and cards
+    const targets = document.querySelectorAll('section, .project-card');
+    targets.forEach(target => {
+        target.classList.add('reveal');
+        observer.observe(target);
+    });
+}
+
 async function loadData() {
     try {
         const [profileRes, projectsRes] = await Promise.all([
@@ -11,9 +28,12 @@ async function loadData() {
         allProjects = await projectsRes.json();
 
         renderProfile(profile);
-        renderProblems(profile.problems_section);
         renderProjects(allProjects);
+        setupCategoryFilter();
         setupModal();
+        setupAboutModal();
+        setupSmoothScroll();
+        setupRevealAnimation();
     } catch (error) {
         console.error('データの読み込みに失敗しました:', error);
     }
@@ -33,47 +53,83 @@ function renderProfile(profile) {
         userImage.style.display = 'none';
     }
 
+    const contactMessage = document.getElementById('contact-message');
+    if (contactMessage) {
+        contactMessage.textContent = profile.contact.message || "作品に関するお問い合わせは、下記よりお気軽にどうぞ。";
+    }
+
     const contactInfo = document.getElementById('contact-info');
     contactInfo.innerHTML = `
         <p>📧 ${profile.contact.email}</p>
-        <p>🕒 連絡可能時間: ${profile.contact.contact_time}</p>
-        <p>⏳ 稼働時間: ${profile.contact.work_hours}</p>
+        ${profile.contact.lancers_url ? `<p>🔗 <a href="${profile.contact.lancers_url}" target="_blank">Lancers</a></p>` : ''}
+        ${profile.contact.cloudworks_url ? `<p>🔗 <a href="${profile.contact.cloudworks_url}" target="_blank">CloudWorks</a></p>` : ''}
     `;
+
+    // About Me Section Logic
+    if (profile.about_me) {
+        const aboutBtn = document.getElementById('open-about-modal');
+        if (aboutBtn) {
+            aboutBtn.style.display = 'inline-flex';
+            
+            // Populate About Modal Data
+            document.getElementById('about-image').src = profile.image;
+            document.getElementById('about-name').textContent = profile.name;
+            document.getElementById('about-title').textContent = profile.title;
+            document.getElementById('about-intro').innerHTML = profile.about_me.intro;
+            
+            if (profile.about_me.strengths && Array.isArray(profile.about_me.strengths)) {
+                const strengthsHtml = profile.about_me.strengths.map(s => `
+                    <div style="background: rgba(255,255,255,0.03); padding: 15px; border-radius: 8px; border-left: 3px solid var(--accent-sage);">
+                        <h4 style="color: var(--accent-sage); margin-bottom: 5px;">${s.title}</h4>
+                        <p style="font-size: 0.9rem;">${s.desc}</p>
+                    </div>
+                `).join('');
+                document.getElementById('about-strengths').innerHTML = strengthsHtml;
+            }
+            document.getElementById('about-message').innerHTML = profile.about_me.message;
+        }
+    }
 }
 
-function renderProblems(problems) {
-    const problemsContainer = document.getElementById('problems-content');
-    if (!problems || !problemsContainer) return;
+function setupCategoryFilter() {
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    filterBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            // Update active state
+            filterBtns.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
 
-    const titleElement = document.getElementById('problems-title');
-    if (titleElement) titleElement.textContent = problems.title;
+            const category = btn.getAttribute('data-category');
+            const filtered = category === 'all'
+                ? allProjects
+                : allProjects.filter(p => p.category === category);
 
-    problemsContainer.innerHTML = `
-        <div class="problems-grid">
-            ${problems.items.map(item => `<div class="problem-card">${item}</div>`).join('')}
-        </div>
-        <div class="solution-banner">
-            <p>${problems.solution_message}</p>
-        </div>
-    `;
+            renderProjects(filtered);
+            setupRevealAnimation(); // re-animate for filtered results
+        });
+    });
 }
 
 function renderProjects(projects) {
     const projectList = document.getElementById('project-list');
-    projectList.innerHTML = projects.map((project, index) => `
-        <div class="project-card" data-index="${index}" style="cursor: pointer;">
-            <div class="card-image">
-                ${project.image ? `<img src="${project.image}" alt="${project.title}">` : 'No Image'}
+    projectList.innerHTML = projects.map((project) => {
+        // Find the actual index in allProjects to keep modal accurate
+        const realIndex = allProjects.findIndex(p => p.id === project.id);
+        return `
+            <div class="project-card" data-index="${realIndex}" style="cursor: pointer;">
+                <div class="card-image">
+                    ${project.image ? `<img src="${project.image}" alt="${project.title}">` : 'No Image'}
+                </div>
+                <h3 class="card-title">${project.title}</h3>
+                <p class="card-description">${project.description.concept}</p>
+                <div class="card-tags" style="margin-top: 10px; font-size: 0.8rem;">
+                    ${project.tools.map(tool => `<span style="background: rgba(255,255,255,0.1); padding: 2px 8px; border-radius: 10px; margin-right: 5px;">${tool}</span>`).join('')}
+                </div>
             </div>
-            <h3 class="card-title">${project.title}</h3>
-            <p class="card-description">${project.description.concept}</p>
-            <div class="card-tags" style="margin-top: 10px; font-size: 0.8rem;">
-                ${project.tools.map(tool => `<span style="background: rgba(255,255,255,0.1); padding: 2px 8px; border-radius: 10px; margin-right: 5px;">${tool}</span>`).join('')}
-            </div>
-        </div>
-    `).join('');
+        `;
+    }).join('');
 
-    // Add click events to cards
+    // Re-bind click events
     document.querySelectorAll('.project-card').forEach(card => {
         card.addEventListener('click', () => {
             const index = card.getAttribute('data-index');
@@ -96,6 +152,48 @@ function setupModal() {
     });
 }
 
+function setupAboutModal() {
+    document.addEventListener('click', (e) => {
+        // Open button click
+        if (e.target.closest('#open-about-modal')) {
+            e.preventDefault();
+            const modal = document.getElementById('about-modal');
+            if (modal) {
+                modal.classList.remove('hidden');
+                document.body.style.overflow = 'hidden';
+            }
+        }
+        
+        // Close button click
+        if (e.target.closest('#close-about-modal')) {
+            const modal = document.getElementById('about-modal');
+            if (modal) {
+                modal.classList.add('hidden');
+                document.body.style.overflow = '';
+            }
+        }
+        
+        // Overlay click
+        if (e.target.matches('#about-modal .modal-overlay')) {
+            const modal = document.getElementById('about-modal');
+            if (modal) {
+                modal.classList.add('hidden');
+                document.body.style.overflow = '';
+            }
+        }
+    });
+
+    window.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+            const aboutModal = document.getElementById('about-modal');
+            if (aboutModal && !aboutModal.classList.contains('hidden')) {
+                aboutModal.classList.add('hidden');
+                document.body.style.overflow = '';
+            }
+        }
+    });
+}
+
 function openModal(project) {
     const modal = document.getElementById('project-modal');
 
@@ -108,10 +206,10 @@ function openModal(project) {
 
     // Change labels to Before/After perspective
     const labels = {
-        'modal-label-target': '🌟 作品のターゲット',
-        'modal-label-effort': '🎨 制作のこだわり',
-        'modal-label-solution': '✨ 制作・解決のポイント',
-        'modal-label-detail': '💡 ご依頼内容・お悩み'
+        'modal-label-target': ' 作品のターゲット',
+        'modal-label-effort': ' 制作のこだわり',
+        'modal-label-solution': ' 制作・解決のポイント',
+        'modal-label-detail': ' ご依頼内容・お悩み'
     };
 
     Object.entries(labels).forEach(([id, text]) => {
@@ -126,6 +224,54 @@ function openModal(project) {
     document.body.style.overflow = 'hidden'; // Prevent scrolling
 }
 
+function setupSmoothScroll() {
+    const navLinks = document.querySelectorAll('.nav-link');
+    
+    navLinks.forEach(link => {
+        link.addEventListener('click', (e) => {
+            e.preventDefault();
+            const targetId = link.getAttribute('data-target');
+            const targetSection = document.getElementById(targetId);
+            
+            if (targetSection) {
+                // Header height for offset
+                const headerOffset = document.getElementById('main-header').offsetHeight;
+                const elementPosition = targetSection.getBoundingClientRect().top;
+                const offsetPosition = elementPosition + window.pageYOffset - headerOffset - 20;
+                
+                window.scrollTo({
+                    top: offsetPosition,
+                    behavior: "smooth"
+                });
+            }
+        });
+    });
+
+    // Active link highlighting on scroll
+    window.addEventListener('scroll', () => {
+        let current = '';
+        const sections = ['hero', 'works', 'contact'];
+        const headerOffset = document.getElementById('main-header').offsetHeight;
+
+        sections.forEach(sectionId => {
+            const section = document.getElementById(sectionId);
+            if (section) {
+                const sectionTop = section.offsetTop;
+                if (pageYOffset >= sectionTop - headerOffset - 100) {
+                    current = sectionId;
+                }
+            }
+        });
+
+        navLinks.forEach(link => {
+            link.classList.remove('active');
+            if (link.getAttribute('data-target') === current) {
+                link.classList.add('active');
+            }
+        });
+    });
+}
+
 function closeModal() {
     const modal = document.getElementById('project-modal');
     modal.classList.add('hidden');
@@ -133,3 +279,4 @@ function closeModal() {
 }
 
 loadData();
+

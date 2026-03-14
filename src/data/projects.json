@@ -1,7 +1,7 @@
 [
   {
     "id": "spring-sale-banner",
-    "category": "banner",
+    "category": "sns_image",
     "title": "ネイルサロン Spring Sale Instagram投稿画像",
     "image": "images/work/spring-sale.png",
     "description": {
@@ -17,7 +17,7 @@
   },
   {
     "id": "nursery-info-banner",
-    "category": "sns",
+    "category": "sns_image",
     "title": "保育園 入園説明会のお知らせ Instagram投稿画像",
     "image": "images/work/nursery-school.png",
     "description": {
@@ -65,7 +65,7 @@
   },
   {
     "id": "cat-cafe-logo",
-    "category": "branding",
+    "category": "logo",
     "title": "猫カフェ「NobiNobi Cat Cafe」ロゴデザイン",
     "image": "images/work/cat-cafe-logo.png",
     "description": {
@@ -81,7 +81,7 @@
   },
   {
     "id": "kyoto-vlog-thumbnail",
-    "category": "YouTubeサムネイル",
+    "category": "thumbnail",
     "title": "YouTube 制作実績：京都Vlog 「1万円ご褒美プラン」サムネイル",
     "image": "images/work/portfolio_samune_01.png",
     "description": {
