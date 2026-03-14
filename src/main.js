@@ -20,8 +20,8 @@ function setupRevealAnimation() {
 async function loadData() {
     try {
         const [profileRes, projectsRes] = await Promise.all([
-            fetch('./src/data/profile.json'),
-            fetch('./src/data/projects.json')
+            fetch('./data/profile.json'),
+            fetch('./data/projects.json')
         ]);
 
         const profile = await profileRes.json();
