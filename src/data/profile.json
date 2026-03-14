@@ -9,7 +9,7 @@
         "lancers_url": "",
         "cloudworks_url": ""
     },
-    "image": "images/cloudworks-icon.jpg",
+    "image": "./images/cloudworks-icon.jpg",
     "about_me": {
         "intro": "大学病院の外科病棟にて3年間勤務した後、行政の乳幼児健診業務に携わり6年目を迎えております。現在は3人の子供を育児しながら、「お相手の困りごとを解決し、笑顔にする」ことをモットーに、AIを活用した制作・サポート活動を行っております。",
         "strengths": [

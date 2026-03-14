@@ -3,7 +3,7 @@
     "id": "spring-sale-banner",
     "category": "sns_image",
     "title": "ネイルサロン Spring Sale Instagram投稿画像",
-    "image": "images/work/spring-sale.png",
+    "image": "./images/work/spring-sale.png",
     "description": {
       "target": "春に指先を彩りたい女性、ネイルサロンの常連・新規顧客",
       "concept": "春の訪れを感じさせる華やかさと、特別感を演出",
@@ -19,7 +19,7 @@
     "id": "nursery-info-banner",
     "category": "sns_image",
     "title": "保育園 入園説明会のお知らせ Instagram投稿画像",
-    "image": "images/work/nursery-school.png",
+    "image": "./images/work/nursery-school.png",
     "description": {
       "target": "これから入園を検討している保護者の方々",
       "concept": "子どもたちの笑顔が溢れる、安心感と温かみのある告知",
@@ -35,7 +35,7 @@
     "id": "cheer-dog-character",
     "category": "illustration",
     "title": "チアダンス教室 キャラクター提案",
-    "image": "images/work/cheer-dog.png",
+    "image": "./images/work/cheer-dog.png",
     "description": {
       "target": "チアダンスに興味がある子どもたち、その保護者",
       "concept": "元気いっぱいで親しみやすい、教室の「顔」になるキャラクター",
@@ -51,7 +51,7 @@
     "id": "new-year-sheep",
     "category": "illustration",
     "title": "年賀状イラスト特集 応募作品",
-    "image": "images/work/new-year-sheep.png",
+    "image": "./images/work/new-year-sheep.png",
     "description": {
       "target": "年賀状を送る一般層、イラスト素材を探している方",
       "concept": "和の伝統と可愛らしさが同居する、心温まる新年の挨拶",
@@ -67,7 +67,7 @@
     "id": "cat-cafe-logo",
     "category": "logo",
     "title": "猫カフェ「NobiNobi Cat Cafe」ロゴデザイン",
-    "image": "images/work/cat-cafe-logo.png",
+    "image": "./images/work/cat-cafe-logo.png",
     "description": {
       "target": "猫好きの方々、癒やしを求めるカフェ利用者、落ち着いた空間を好む層",
       "concept": "のびのびとくつろぐ猫のように、訪れる人がリラックスできる「温かなサードプレイス」",
@@ -83,7 +83,7 @@
     "id": "kyoto-vlog-thumbnail",
     "category": "thumbnail",
     "title": "YouTube 制作実績：京都Vlog 「1万円ご褒美プラン」サムネイル",
-    "image": "images/work/portfolio_samune_01.png",
+    "image": "./images/work/portfolio_samune_01.png",
     "description": {
       "target": "20代の働く女性・大学生。「低予算でも贅沢したい」「週末に手軽にリフレッシュしたい」というニーズを持つ層を想定しています。",
       "concept": "京都らしい「癒やし」と「予算感」を両立させた、クリックを誘発する引きの強いデザイン",
