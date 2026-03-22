@@ -94,5 +94,22 @@
     "tools": [
       "AI Image Generation / Photoshop"
     ]
+  },
+  {
+    "id": "flower-girl-axe",
+    "category": "illustration",
+    "title": "彩りの草原と斧の少女",
+    "image": "./images/work/portfolio_anime_01.png",
+    "description": {
+      "target": "ライトノベル・ゲームなどのファンタジー世界観を好む層",
+      "concept": "強さと可愛らしさが共存する、色鮮やかなファンタジー世界",
+      "detail": "「キャラクターの力強さと、周囲の華やかな自然環境のコントラストを表現したい」というテーマで制作したオリジナルイラストです。",
+      "effort": "手前の花々の鮮やかさと、奥に控える古城の重厚感、そしてキャラクターの持つ大きな斧の質感の描き分けに注力しました。",
+      "solution": "光の差し込み（リムライト）を効果的に配置することで、情報量の多い画面の中でもキャラクターが埋もれず、視線が自然に誘導される構成を実現しました。"
+    },
+    "tools": [
+      "Nano banana pro",
+      "ChatGPT"
+    ]
   }
 ]
